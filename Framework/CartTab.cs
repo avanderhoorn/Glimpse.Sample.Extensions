@@ -7,7 +7,26 @@ using MvcMusicStore.Models;
 
 namespace MvcMusicStore.Framework
 {
-    public class CartTab : AspNetTab 
+    public class CartTab : AspNetTab
     { 
+        public override string Name
+        {
+            get { return "Cart"; }
+        }
+
+        public override object GetData(ITabContext context)
+        {
+            var httpContext = context.GetHttpContext();
+
+            var cart = ShoppingCart.GetCart(httpContext);
+            var items = cart.GetCartDetials();
+
+            return items;
+        }
+
+        public override RuntimeEvent ExecuteOn
+        {
+            get { return RuntimeEvent.EndSessionAccess; }
+        }
     }
 }
