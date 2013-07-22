@@ -14,6 +14,12 @@ namespace MvcMusicStore.Framework
             var httpContext = policyContext.GetHttpContext();
             if (!httpContext.User.IsInRole("Administrator"))
             {
+                var cookie = policyContext.RequestMetadata.GetCookie("SupportCall");
+                if (!string.IsNullOrEmpty(cookie))
+                {
+                    return RuntimePolicy.PersistResults;
+                }
+
                 return RuntimePolicy.Off;
             }
 
