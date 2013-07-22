@@ -103,6 +103,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
+    <Compile Include="Framework\InventoryClientScript.cs" />
     <Compile Include="Framework\InventoryResource.cs" />
     <Compile Include="Framework\SqlMapper.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
@@ -157,6 +158,7 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Framework\InventoryScript.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
