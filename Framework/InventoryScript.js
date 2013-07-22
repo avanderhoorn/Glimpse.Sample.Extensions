@@ -1,5 +1,6 @@
 ﻿(function ($, pubsub, util, data, renderEngine) {
-    var generateAddress = function (albumId) {
+    var isSelected = false,
+        generateAddress = function (albumId) {
             var currentMetadata = data.currentMetadata();
             return util.uriTemplate(currentMetadata.resources.mvcmusicstore_framework_inventoryresource, { 'albumId': albumId });
         },
@@ -10,8 +11,10 @@
         build = function (args) { 
             var targets = $('[data-albumId]');
             if (targets.length > 0) {
-                targets.mouseenter(function() { 
-                    request(args.panel, $(this).attr('data-albumId')); 
+                targets.mouseenter(function() {
+                    if (isSelected) {
+                        request(args.panel, $(this).attr('data-albumId'));
+                    }
                 });
             } 
         },
@@ -27,8 +30,17 @@
         },
         layout = function (panel, result) {
             renderEngine.insert(panel, result, { "keysHeadings": true });
+        },
+        activate = function () {
+            isSelected = true; 
+        },
+        deactivate = function () {
+            isSelected = false;
         };
 
+
+    pubsub.subscribe('action.panel.hiding.inventory', deactivate);
+    pubsub.subscribe('action.panel.showing.inventory', activate);
     pubsub.subscribe('action.data.initial.changed', setup);
     pubsub.subscribe('action.panel.rendered.inventory', build);
 })(jQueryGlimpse, glimpse.pubsub, glimpse.util, glimpse.data, glimpse.render.engine);
