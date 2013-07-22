@@ -103,6 +103,7 @@
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Controllers\StoreController.cs" />
     <Compile Include="Controllers\StoreManagerController.cs" />
+    <Compile Include="Framework\QueryClientScript.cs" />
     <Compile Include="Framework\QueryResource.cs" />
     <Compile Include="Framework\SqlMapper.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
