@@ -7,7 +7,7 @@ using MvcMusicStore.Models;
 
 namespace MvcMusicStore.Framework
 {
-    public class CartTab : AspNetTab, ITabLayout
+    public class CartTab : AspNetTab//, ITabLayout
     {
         private static readonly object Layout = TabLayout.Create()
             .Row(r =>
@@ -34,7 +34,14 @@ namespace MvcMusicStore.Framework
             var cart = ShoppingCart.GetCart(httpContext);
             var items = cart.GetCartDetials();
 
-            return items;
+            var root = new
+            { 
+                CartId = ShoppingCart.GetCartId(httpContext),
+                Total = items.Any() ? items.Sum(x => x.AlbumPrice).ToString() : "--" ,
+                Items = items
+            };
+
+            return root;
         }
 
         public override RuntimeEvent ExecuteOn
