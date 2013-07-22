@@ -26,7 +26,12 @@ namespace MvcMusicStore.Framework
         {
             var queryValue = context.Parameters.GetValueOrDefault(QueryKey);
 
-            return new JsonResourceResult(new { Query = queryValue }, null);
+            using (var connection = SqlMapper.CreateConnection())
+            {
+                var data = connection.Query(queryValue).ToList();
+
+                return new CacheControlDecorator(0, CacheSetting.NoCache, new JsonResourceResult(data, null));
+            } 
         }
     }
 }
