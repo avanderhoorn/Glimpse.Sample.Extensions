@@ -7,7 +7,7 @@ using MvcMusicStore.Models;
 
 namespace MvcMusicStore.Framework
 {
-    public class CartTab : AspNetTab//, ITabLayout
+    public class CartTab : AspNetTab, ILayoutControl//, ITabLayout
     {
         private static readonly object Layout = TabLayout.Create()
             .Row(r =>
@@ -25,6 +25,11 @@ namespace MvcMusicStore.Framework
         public override string Name
         {
             get { return "Cart"; }
+        }
+
+        public bool KeysHeadings
+        {
+            get { return true; }
         }
 
         public override object GetData(ITabContext context)
