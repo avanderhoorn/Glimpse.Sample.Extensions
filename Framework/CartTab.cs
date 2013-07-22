@@ -7,10 +7,10 @@ using MvcMusicStore.Models;
 
 namespace MvcMusicStore.Framework
 {
-    public class CartTab : AspNetTab, ILayoutControl//, ITabLayout
-    {
+    public class CartTab : AspNetTab, ILayoutControl, ITabLayout
+    { 
         private static readonly object Layout = TabLayout.Create()
-            .Row(r =>
+            .Cell("items", TabLayout.Create().Row(r =>
             {
                 r.Cell("{{albumTitle}} ({{albumId}})").AsKey().WithTitle("Album (Id)");
                 r.Cell("albumPrice").AlignRight().Prefix("$").WidthInPixels(100).WithTitle("Price");
@@ -19,8 +19,8 @@ namespace MvcMusicStore.Framework
                 r.Cell("count").Class("mono").WidthInPixels(70).WithTitle("Count");
                 r.Cell("dateCreated").WithTitle("Added");
                 r.Cell("recordId").WithTitle("Record Id");
-                r.Cell("cartId").WithTitle("Cart Id");
-            }).Build();
+            })).Build();
+
 
         public override string Name
         {
