@@ -12,9 +12,8 @@ namespace MvcMusicStore.Framework
         private static readonly object Layout = TabLayout.Create()
             .Row(r =>
             {
-                r.Cell("albumTitle").WithTitle("Album");
-                r.Cell("albumId").WithTitle("Id");
-                r.Cell("albumPrice").AlignRight().WidthInPixels(100).WithTitle("Price");
+                r.Cell("{{albumTitle}} ({{albumId}})").AsKey().WithTitle("Album (Id)");
+                r.Cell("albumPrice").AlignRight().Prefix("$").WidthInPixels(100).WithTitle("Price");
                 r.Cell("genreName").WithTitle("Genre");
                 r.Cell("artistName").WithTitle("Artist");
                 r.Cell("count").Class("mono").WidthInPixels(70).WithTitle("Count");
