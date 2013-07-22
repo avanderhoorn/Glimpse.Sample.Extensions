@@ -9,6 +9,20 @@ using Glimpse.Core.ResourceResult;
 namespace MvcMusicStore.Framework
 {
     public class QueryResource : IResource
-    {
+    { 
+        public string Name
+        {
+            get { return "music_query"; }
+        }
+
+        public IEnumerable<ResourceParameterMetadata> Parameters
+        {
+            get { return null; }
+        }
+
+        public IResourceResult Execute(IResourceContext context)
+        {
+            return new JsonResourceResult(new { Test = 1, Best = 2 }, null);
+        }
     }
 }
