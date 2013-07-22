@@ -35,9 +35,12 @@ namespace MvcMusicStore.Framework
             var items = cart.GetCartDetials();
 
             var root = new
-            { 
-                CartId = ShoppingCart.GetCartId(httpContext),
-                Total = items.Any() ? items.Sum(x => x.AlbumPrice).ToString() : "--" ,
+            {
+                Details = new
+                {
+                    CartId = ShoppingCart.GetCartId(httpContext),
+                    Total = items.Any() ? items.Sum(x => x.AlbumPrice).ToString() : "--"
+                },
                 Items = items
             };
 
