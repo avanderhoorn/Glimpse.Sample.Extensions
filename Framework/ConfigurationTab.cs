@@ -8,5 +8,14 @@ namespace MvcMusicStore.Framework
 {
     public class ConfigurationTab : AspNetTab
     {
+        public override string Name
+        {
+            get { return "Setup"; }
+        }
+
+        public override object GetData(Glimpse.Core.Extensibility.ITabContext context)
+        {
+            return MvcMusicStore.Models.Configuration.Current;
+        }
     }
 }
